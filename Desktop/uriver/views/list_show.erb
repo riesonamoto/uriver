@@ -1,0 +1,52 @@
+<h1 id="title">買い物リスト</h1>
+
+<a class="btn logintop" href="/login_top">ログイントップへ</a>
+  <br>
+  <br>
+<% if @res.to_a.length > 0 %> <!-- to_aメソッドは配列を返し、lengthは、要素の数を返す -->
+<form action="/checked" method="POST">
+  <table id="lists_table">
+    <tr>
+      <th>コーナー</th>
+      <th>材料名</th>
+      <th>料理名</th>
+      <th>チェック</th>
+    </tr>
+<!--
+ここから表示変えたい処理
+    <% before_category_id = 0 %>
+
+    <% @res.each do |item| do %>
+    p "以下item"
+    p item
+
+      <p><% item['category_name'] if item['category_id']!= before_category_id %></p>
+      before_category_id = item['category_id']
+    <% end %>
+
+ここまで表示変えたい処理
+-->
+
+    <% @res.each do |list| %>
+    <tr>
+      <td><%= list['category_name'] %></td>
+      <td><%= list['menu_name'] %></td>
+      <td><%= list['item_name'] %></td>
+
+      <td>
+        <% if list['checked'] == 't' %>
+        <input type="checkbox" name="<%= list['id'] %>" checked>
+        <% else %>
+        <input type="checkbox" name="<%= list['id'] %>">
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+
+
+  </table>
+  <div class="submit">
+  <input type="submit" value="保存する">
+  </div>
+</form>
+<% end %>

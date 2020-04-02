@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= @title || "u:river" %></title>
+  <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-left">
+        <a href="/">
+        <img src="/image/logo.png" class="hedderlogo">
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="/signup">新規登録</a>
+        <a href="/login">ログイン</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <%= yield %>
+  </main>
+  
+  <footer>
+    <div class="footer">
+    <p>(c) 2019 u:river</p>
+    </div>
+  </footer>
+
+  <script src="/main.js"></script>
+</body>
+</html>
