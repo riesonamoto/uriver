@@ -12,20 +12,6 @@
       <th>料理名</th>
       <th>チェック</th>
     </tr>
-<!--
-ここから表示変えたい処理
-    <% before_category_id = 0 %>
-
-    <% @res.each do |item| do %>
-    p "以下item"
-    p item
-
-      <p><% item['category_name'] if item['category_id']!= before_category_id %></p>
-      before_category_id = item['category_id']
-    <% end %>
-
-ここまで表示変えたい処理
--->
 
     <% @res.each do |list| %>
     <tr>
@@ -42,8 +28,6 @@
       </td>
     </tr>
     <% end %>
-
-
   </table>
   <div class="submit">
   <input type="submit" value="保存する">

@@ -93,19 +93,17 @@ footer p {
 }
 
 .top-wrapper {
-  float: left;
-  margin: 0, auto;
+  margin: 0 auto;
   background-size: cover;
   text-align: center;
-  width: 100%;
+  width: 60%;
 }
 
 .howto {
   float: left;
   display: inline-block;
   width: 33.33333%;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
 }
 
 .awsome {
