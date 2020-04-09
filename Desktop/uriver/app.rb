@@ -92,8 +92,24 @@ end
 
 # 登録ページの情報を記録
 post '/list_form' do
+
+  #  @name = session[:name] # name属性のnameはsessionとしてとる
+  #  @creater_id = session[:name]
+  #  @created_at = params[:created_at]
+
+  # creater_idにuser_idの値を代入したい
   @name = session[:name] # name属性のnameはsessionとしてとる
-  @creater_id = session[:name]
+  
+  user_id =　client.exec_params('select id from users where name =' @name, [@name])
+  #user_id = client.exec_params(sql, [@name])
+  p "userid"
+  p user_id
+  @creater_id = user_id
+  #menu_id =  client.exec_params('insert into menus(name,creater_id, created_at) values($1, $2, $3) returning id', [n.first, @creater_id, @created_at]).first['id']
+
+  # ここまで
+
+
   @created_at = params[:created_at]
 
   p "以下がparams"
