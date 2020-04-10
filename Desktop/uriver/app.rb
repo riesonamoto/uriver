@@ -57,6 +57,11 @@ post '/login' do
 
   sql = "select * from users where name = $1 and password = $2"
   user = client.exec_params(sql, [@name, @password])
+
+  p "sql"
+  p sql
+  p "user"
+  p user
   
 
   # if $users[@name] == @password
@@ -99,12 +104,21 @@ post '/list_form' do
 
   # creater_idにuser_idの値を代入したい
   @name = session[:name] # name属性のnameはsessionとしてとる
-  
-  user_id =　client.exec_params('select id from users where name =' @name, [@name])
-  #user_id = client.exec_params(sql, [@name])
-  p "userid"
-  p user_id
-  @creater_id = user_id
+  session[:name] = @name
+  p "name"
+  p @name
+
+  sql = "select id from users where name = $1"
+  @creater_id = client.exec_params(sql, [@name])
+ 
+  p "creater_id"
+  p @creater_id
+#
+#@name = params[:name]
+#@password = params[:password]
+#session[:name] = @name # @nameはsessionの:nameということを紐付ける
+
+
   #menu_id =  client.exec_params('insert into menus(name,creater_id, created_at) values($1, $2, $3) returning id', [n.first, @creater_id, @created_at]).first['id']
 
   # ここまで
@@ -132,7 +146,10 @@ post '/list_form' do
   lists.each do |n|
 
     # menuに追加、.first['id']はrubyの書き方
-    menu_id =  client.exec_params('insert into menus(name,creater_id, created_at) values($1, $2, $3) returning id', [n.first, @creater_id, @created_at]).first['id']
+    menu_id =  client.exec_params('
+      insert into menus(name,creater_id, created_at)
+      values($1, $2, $3) returning id', 
+      [n.first, @creater_id, @created_at]).first['id']
     p "delete前"
     p n
 
@@ -171,16 +188,19 @@ end
 # 表示ページ
 get '/list_show' do
 
-  # @res = client.exec_params('
-  #   select materials.id, materials.menu_id, menus.name menu_name, materials.item_id, items.name item_name, items.category_id, categories.name category_name, materials.checked
-  #   from materials
-  #   left outer join items on materials.item_id = items.id
-  #   left outer join categories on category_id = categories.id
-  #   left outer join menus on materials.menu_id = menus.id
-  #   where menu_id in (select id from menus where creater_id = $1)
-  #   order by category_id, materials.id asc;', [1])
+  @name = session[:name] # name属性のnameはsessionとしてとる
+  
+  #@user_id = client.exec_params('select id from users where name = $1', [@name])
+ # p "user_id"
+  #p user_id
+  #@name = session[:name] # name属性のnameはsessionとしてとる
+  #namesession[:name] = @name # @nameはsessionの:nameということを紐付ける
 
-  @creater_id = session[:name]
+  
+  # user_id = client.exec_params('select id from users where name = $1', [session[:name]])
+
+
+  @creater_id = @user_id
   @res = client.exec_params('
     select 
       materials.creater_id,
