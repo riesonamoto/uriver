@@ -162,7 +162,7 @@ post '/list_form' do
       p menu_id
       p item_id
       # itemsに追加
-      client.exec_params('insert into materials(menu_id, item_id, checked, creater_id, menu_created_at) values($1, $2, $3, $4, $5) returning id', [menu_id, item_id, true, @creater_id, @created_at]).first['id']
+      client.exec_params('insert into materials(menu_id, item_id, checked, creater_id, menu_created_at) values($1, $2, $3, $4, $5) returning id', [menu_id, item_id, false, @creater_id, @created_at]).first['id']
     end
   end
   redirect '/list_show'
