@@ -98,49 +98,14 @@ end
 # 登録ページの情報を記録
 post '/list_form' do
 
-  #  @name = session[:name] # name属性のnameはsessionとしてとる
-  #  @creater_id = session[:name]
-  #  @created_at = params[:created_at]
-
-  # creater_idにuser_idの値を代入したい
+  # sessionのnameから、user_idを取り出して、以降に使うcreater_idに代入する
   @name = session[:name] # name属性のnameはsessionとしてとる
-  p "name"
-  p @name
-
   sql = "select id from users where name = $1"
   user_id = client.exec_params(sql, [@name])
   user_id_obj = user_id.to_a # to_aは、ハッシュ、範囲オブジェクトなどを配列に変換するメソッド。キーと値の両方取り出せる。
-  p user_id_obj
-  @creater_id = user_id_obj [0]["id"]
-  p "createrid"
-  p @creater_id
-  #creater_id = user_id_obj.values
-  #p creater_id
-  #p creater_id
-  #creater_id = []
-  #@creater_id = creater_id.push([])
-
- # lists = []
- # params.each do |key, n|
-  #  lists.push([]) if key.include?('menu_')
-  #  lists.last.push(n)
- #   end
-
-   # pushメソッドは、「配列名array.push(引数obj)」と書くことで、配列の末尾に引数を要素として追加できる。レシーバ自身を変更するメソッドです。戻り値はレシーバ自身です。
-   # include?メソッドは、「配列名array.include?(引数obj)」配列の要素に引数objが含まれていればtrue、なければfalseを返します。要素と引数objが同じかどうかの比較には==メソッドが使われます。
-   # lastメソッドは、配列の最後の要素を返します。「配列名array.last(num)」(num)が記載されていなければ、最後の要素、(num)に(2)と記載されれば、最後と最後から2番目の要素を返す。配列が空のときはnilを返します。 
-
-
-#
-#@name = params[:name]
-#@password = params[:password]
-#session[:name] = @name # @nameはsessionの:nameということを紐付ける
-
-
-  #menu_id =  client.exec_params('insert into menus(name,creater_id, created_at) values($1, $2, $3) returning id', [n.first, @creater_id, @created_at]).first['id']
-
-  # ここまで
-
+  p user_id_obj # 配列の中がハッシュになっている？
+  @creater_id = user_id_obj [0]["id"] # ハッシュの値を取り出す
+  p @creater_id # 値を取り出せることを確認した
 
   @created_at = params[:created_at]
 
@@ -206,26 +171,15 @@ end
 # 表示ページ
 get '/list_show' do
 
+  # sessionのnameから、user_idを取り出して、以降に使うcreater_idに代入する
   @name = session[:name] # name属性のnameはsessionとしてとる
   sql = "select id from users where name = $1"
   user_id = client.exec_params(sql, [@name])
   user_id_obj = user_id.to_a # to_aは、ハッシュ、範囲オブジェクトなどを配列に変換するメソッド。キーと値の両方取り出せる。
-  p user_id_obj
-  @creater_id = user_id_obj [0]["id"]
-  p "createrid"
-  p @creater_id
-  
-  #@user_id = client.exec_params('select id from users where name = $1', [@name])
- # p "user_id"
-  #p user_id
-  #@name = session[:name] # name属性のnameはsessionとしてとる
-  #namesession[:name] = @name # @nameはsessionの:nameということを紐付ける
+  p user_id_obj # 配列の中がハッシュになっている？
+  @creater_id = user_id_obj [0]["id"] # ハッシュの値を取り出す
+  p @creater_id # 値を取り出せることを確認した
 
-  
-  # user_id = client.exec_params('select id from users where name = $1', [session[:name]])
-
-
-  @creater_id = @user_id
   @res = client.exec_params('
     select 
       materials.creater_id,
