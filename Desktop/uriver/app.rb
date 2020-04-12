@@ -111,15 +111,14 @@ post '/list_form' do
   user_id = client.exec_params(sql, [@name])
   user_id_obj = user_id.to_a # to_aは、ハッシュ、範囲オブジェクトなどを配列に変換するメソッド。キーと値の両方取り出せる。
   p user_id_obj
-  creater_id = user_id_obj.values
-  p creater_id
+  @creater_id = user_id_obj [0]["id"]
+  p "createrid"
+  p @creater_id
+  #creater_id = user_id_obj.values
+  #p creater_id
   #p creater_id
   #creater_id = []
   #@creater_id = creater_id.push([])
-
-
-  p "creater_id"
-  p @creater_id
 
  # lists = []
  # params.each do |key, n|
@@ -208,6 +207,13 @@ end
 get '/list_show' do
 
   @name = session[:name] # name属性のnameはsessionとしてとる
+  sql = "select id from users where name = $1"
+  user_id = client.exec_params(sql, [@name])
+  user_id_obj = user_id.to_a # to_aは、ハッシュ、範囲オブジェクトなどを配列に変換するメソッド。キーと値の両方取り出せる。
+  p user_id_obj
+  @creater_id = user_id_obj [0]["id"]
+  p "createrid"
+  p @creater_id
   
   #@user_id = client.exec_params('select id from users where name = $1', [@name])
  # p "user_id"
