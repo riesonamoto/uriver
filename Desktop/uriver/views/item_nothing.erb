@@ -1,0 +1,29 @@
+<h1 id="title">材料名が登録されていません</h1>
+
+<a class="btn logintop" href="/login_top">ログイントップへ</a>
+  <br>
+  <br>
+<form id="menu_form" action="/list_form" method="POST">
+  <div class="menu">
+    <div id="addBtn">
+       <p class="question">材料名ない</p>
+       <input id="new_menu_name" type="text" placeholder="料理名は？？">
+       <button type="button" id="addMenuNameBtn" onclick="addMenuName()">追加</button>
+    </div>
+  </div>
+
+
+
+  <div id="form_main">
+  </div>
+  <div class="date">
+    <div>
+    <p>入力日<br><input type="date" name="created_at" required></p>
+    </div>
+  </div>
+
+  <div id="form_send_btn">
+    <input type="submit" value="保存する" class="checked" >
+  </div>
+</form>
+

@@ -150,8 +150,8 @@ post '/list_form' do
       item = client.exec_params('select id from items where name = $1', [i])
       # もし見つからない場合は中断する
       # firstメソッドは、配列の最初の要素を返す
-      unless item.first
-        p 'Error： 該当する材料名がitemsに存在しないので中断しました。'
+      unless item.first # 該当する材料名がitemsに存在しないと、存在しませんよの案内だす
+        redirect '/item_nothing'        
         break
       end
 
@@ -206,6 +206,12 @@ get '/list_show' do
 
   erb :list_show
 end
+
+# 材料名がなかった場合のエラー文
+get '/item_nothing' do
+  erb :item_nothing
+end
+
 
 post '/checked' do
   p params
