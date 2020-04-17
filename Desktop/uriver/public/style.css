@@ -369,16 +369,6 @@ input[type="date"]:focus {
   text-align: center;
 }
 
-.regenestration {
-
-  width: 86%;
-  margin: auto;
-  margin-top: 46px;
-  margin-bottom: 46px;
-  padding-top: 46px;
-  text-align: center;
-}
-
 input[type="submit"]:hover, #addFoodNameBtn:hover, {
   cursor: pointer;
 }
@@ -450,7 +440,12 @@ input[type=checkbox]:checked::after {
   transition: 0.3s;
 }
 
-.submit, .reregistration {
+.retry {
+  text-align: center;
+  width: 100%;
+}
+
+.submit {
   display: inline-block;
   text-align: center;
   margin-left: auto;
@@ -458,7 +453,7 @@ input[type=checkbox]:checked::after {
   width: 100%;
 }
 
-input[type="submit"], .reregistration {
+input[type="submit"] {
   display: inline-block;
   text-align: center;
   border: none;
