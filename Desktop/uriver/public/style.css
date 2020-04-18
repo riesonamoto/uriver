@@ -485,3 +485,37 @@ input[type="submit"]:active {
   top: 7px;
   box-shadow: none;
 }
+
+/* 材料名がDBになかった時のエラーページ */
+.error {
+  font-size: 4em;
+  text-align: center;
+}
+
+.error_image {
+  width: 200px;
+}
+
+.error_msg {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.oops {
+  font-size: 2em;
+}
+
+.item {
+  margin: auto;
+  background-color: rgba(241, 244, 135, 0.5);
+  border-radius: 10px;
+  width: 30%;
+  font-size: 1.4em;
+  padding: 10px;
+}
+
+.item_title {
+  font-size: 0.8em;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
