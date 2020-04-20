@@ -32,6 +32,6 @@ function addMenuName() {
 function addMaterialName(mine) {
   const parentNum = mine.parentNode.getAttribute('data-menuNum')
   var materialNum = materialNums[parentNum];
-  mine.insertAdjacentHTML('beforebegin', '<input type="text" name="' + parentNum + '_material_' + String(materialNum) + '" placeholder="材料名"><br>');
+  mine.insertAdjacentHTML('beforebegin', '<input type="text" name="' + parentNum + '_material_' + String(materialNum) + '" placeholder="材料名" required><br>');
   materialNums[parentNum]++;
 };
